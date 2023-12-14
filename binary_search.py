@@ -9,7 +9,12 @@ def binary_search(arr,n):
         if mid_element==n:
             print(f"element {n} found at {mid}")
 
+        elif mid_element<n:
+            low=mid+1
 
+        else:
+            high = mid-1
+    return -1
 
 arr = list(map(int,input("Enter the array: ").split()))
 n = int(input("Enter the number to be searched: "))
