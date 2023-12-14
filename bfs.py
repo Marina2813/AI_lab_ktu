@@ -14,12 +14,15 @@ def bfs(graph,start,goal):
                 for i in element:
                     q.append(i)
 
+
 n = int(input("Enter the number of nodes: "))
-graph={}
+graph = {}
 for i in range(n):
-    parent = input("Enter the parent node:")
-    child = input("Enter the child nodes").split()
+    parent = input("Enter the parent node: ")
+    child = input(f"Enter the child nodes of {parent}: ").split()
     graph[parent] = child
-start = input("Enter the starting node: ")
-goal = input("Enter the goal node: ")
+
+start = input("Enter start node: ")
+goal = input("Enter start node: ")
+
 bfs(graph,start,goal)

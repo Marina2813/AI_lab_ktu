@@ -11,32 +11,22 @@ ii) Check whether “harry visited hagrid”
 iii) Check whether “it rained today”'''
 
 from sympy import *
-from sympy.logic.inference import satisfiable
 from sympy.logic.inference import valid
 
-rain = Symbol("rain") #it  is raining
-Hagrid = Symbol("Hagrid") #Harry visited Hagrid
-Dumbledore = Symbol("Dumbledore") #Harry visited Dumbledore
+p = Symbol("it rained today")
+q = Symbol("Harry visited Hagrid")
+r = Symbol("Harry visited Dumbledore")
 
+p1 = Implies(Not(p),q)
+p2 = Or(q,r)
+p3 = Not(And(q,r))
+p4 = r
 
-p1 = Implies( Not(rain), Hagrid)
-p2 = Or(Hagrid,Dumbledore)
-p3 = Not(And(Hagrid,Dumbledore))
-p4 = Dumbledore
+kb = And(p1,p2,p3,p4)
+print("KNOWLEDGE BASE")
+print(kb)
 
-#saving sentences in kb
-knowledge_base = And(p1,p2,p3,p4)
-print(knowledge_base)
-models = satisfiable(knowledge_base,all_models = True)
-for model in models:
-    print(model)
-
-p5=And(Not(Hagrid),Dumbledore)
-p6=Implies(Dumbledore,rain)
-print(valid(Implies(And(p5,p6),rain)))
-
-p1=And((rain),Not(Hagrid))
-print(p1)
-print(satisfiable(p1))
-
-
+r1 = valid(Implies(kb,q))
+r2 = valid(Implies(kb,p))
+print(r1)
+print(r2)
